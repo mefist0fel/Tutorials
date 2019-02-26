@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public sealed class Hero : MonoBehaviour {
     public float speed = 1;
     public Animation swordAnimation;
     public Transform rotateTransform;
-
-    void Start() {
-
-    }
 
     void Update() {
         ControlPlayer();
