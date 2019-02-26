@@ -2,6 +2,7 @@
 
 public sealed class Hero : MonoBehaviour {
     public float speed = 1;
+    public float health = 100;
     public Animation swordAnimation;
     public Transform rotateTransform;
 
@@ -29,5 +30,11 @@ public sealed class Hero : MonoBehaviour {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
             rotateTransform.localEulerAngles = new Vector3(0, 270, 0);
         }
+    }
+
+    public void DealDamage(float damage) {
+        health -= damage;
+        if (health <= 0)
+            Debug.Log("I AM DEAD");
     }
 }

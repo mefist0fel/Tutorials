@@ -24,4 +24,12 @@ public class Enemy : MonoBehaviour {
         transform.LookAt(hero.transform);
         transform.Translate(Vector3.forward * Time.deltaTime * Speed);
     }
+    
+    private void OnCollisionEnter(Collision other) {
+        var collidedHero = other.gameObject.GetComponent<Hero>();
+        if (collidedHero == null)
+            return;
+
+        collidedHero.DealDamage(10);
+    }
 }
