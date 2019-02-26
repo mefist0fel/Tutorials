@@ -1,13 +1,23 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public sealed class Hero : MonoBehaviour {
     public float speed = 1;
     public float health = 100;
     public Animation swordAnimation;
     public Transform rotateTransform;
+    public Text healthBar;
+
+    private bool isAlive;
+
+    void Start() {
+        isAlive = true;
+        healthBar.text = "HP: " + health;
+    }
 
     void Update() {
-        ControlPlayer();
+        if (isAlive)
+            ControlPlayer();
     }
 
     private void ControlPlayer() {
@@ -33,8 +43,15 @@ public sealed class Hero : MonoBehaviour {
     }
 
     public void DealDamage(float damage) {
+        if (!isAlive)
+            return;
+        
         health -= damage;
-        if (health <= 0)
-            Debug.Log("I AM DEAD");
+        healthBar.text = "HP: " + health;
+
+        if (health <= 0) {
+            isAlive = false;
+            healthBar.text = "DEAD";
+        }
     }
 }
